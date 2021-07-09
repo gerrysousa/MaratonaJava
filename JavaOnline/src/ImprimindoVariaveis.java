@@ -13,13 +13,14 @@ public class ImprimindoVariaveis {
      */
 
       int idade = 20;
-      double preco = 10.5;
-      float valor = 10;
-      boolean existe = true;
-      char letra = 'A';//aspas simples
-      byte tests = 1;
-      short test = 1;
-      long numeroGrand = 10000000;
+      double precoDouble = 10.5;
+      float precoFloat = 10;
+      boolean verdadeiro = true;
+      char caractere = 'A';//aspas simples
+      char caractereUnicod = '\u0041';//2 bytes
+      byte idadeByte = 19;
+      short numeroShort = 32767;
+      long numeroGrand = 1000L;
     System.out.println("A idade eh: "+idade);
   }
 }
