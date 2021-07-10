@@ -1,7 +1,6 @@
 public class Arrays3 {
   public static void main(String[] args) {
-    //Formas de iniciar um array
-    int numeros []  = new int[5];
+    //Formas de inicializar um array
     int [] numeros2 = new int[3];
     int [] numeros3 = {1,2,3,4,5};
     int [] numeros4 = new int[]{1,2,3,4,5};
