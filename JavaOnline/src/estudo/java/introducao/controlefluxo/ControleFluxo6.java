@@ -1,3 +1,5 @@
+package estudo.java.introducao.controlefluxo;
+
 public class ControleFluxo6 {
   public static void main(String[] args) {
     //Dado o valor de um carro, descubra quantas vezes ele pode ser parcelado

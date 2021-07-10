@@ -1,3 +1,5 @@
+package estudo.java.introducao;
+
 public class RelatorioPendencia {
   public static void main(String[] args){
     String nome="Bastiao";

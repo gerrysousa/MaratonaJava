@@ -1,3 +1,5 @@
+package estudo.java.introducao.arrays;
+
 public class Arrays2 {
   public static void main(String[] args) {
     //Os arrays são inicializados ao serem criados
