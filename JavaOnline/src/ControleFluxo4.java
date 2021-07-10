@@ -7,7 +7,7 @@ public class ControleFluxo4 {
       //contador++;
     }
     do {
-      System.out.println(contator2);
+      System.out.println("dentro do do while,executa pelo menos uma vez: "+contator2);
       contator2++;
     }while (contator2<10);
 
