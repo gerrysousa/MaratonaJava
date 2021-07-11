@@ -13,6 +13,7 @@ public class CalculadoraTest {
     System.out.println(resultDiv);
     int resultDiv2 = calc.divideDoisNumeros2(30,2);
     System.out.println(resultDiv2);
+    calc.divideDoisNumeros3(30,0);
 
     System.out.println("Continuar exec");
   }
