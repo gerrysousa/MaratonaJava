@@ -1,4 +1,4 @@
-package estudo.java.javacore.introducaoclasses;
+package estudo.java.javacore.introducaoclasses.classes;
 
 public class Estudante {
   public String nome;

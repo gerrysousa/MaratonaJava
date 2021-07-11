@@ -1,6 +1,6 @@
-package estudo.java.javacore.introducaoclassestest;
+package estudo.java.javacore.introducaoclasses.test;
 
-import estudo.java.javacore.introducaoclasses.Estudante;
+import estudo.java.javacore.introducaoclasses.classes.Estudante;
 
 public class EstudanteTest {
 
