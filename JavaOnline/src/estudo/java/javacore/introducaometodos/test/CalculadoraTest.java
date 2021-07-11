@@ -8,6 +8,7 @@ public class CalculadoraTest {
     Calculadora calc = new Calculadora();
     calc.somarDoisNumeros();
     calc.subtratirDoisNumeros();
+    calc.multiplicarDoisNumeros(55.5,5);
     System.out.println("Continuar exec");
   }
 }
