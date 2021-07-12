@@ -35,5 +35,12 @@ public class Calculadora {
     }
     System.out.println("Nao eh possivel dividir por 0");
   }
+  public void alteraDoisNumeros(double num1, double num2) {
+    num1 = 30;
+    num2 = 40;
+    System.out.println("Dentro do metodo");
+    System.out.println("num1: "+num1);
+    System.out.println("num2: "+num2);
+  }
 
 }
