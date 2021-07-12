@@ -6,13 +6,15 @@ public class Professor {
   public String rg;
   public String cpf;
 
-  public void imprimeProfessor(Professor prof)
-  {
+  public void imprimeProfessor()
+  { // quando é tipo primitivo, o metodo recebe uma copia do valor,
+    // quando é tipo reference, o metodo recebe a referencia do objeto na memoria
+    //aux.nome = "Nome foi alterado";
     System.out.println("------------------");
-    System.out.println(prof.nome);
-    System.out.println(prof.matricula);
-    System.out.println(prof.rg);
-    System.out.println(prof.cpf);
+    System.out.println(this.nome);
+    System.out.println(this.matricula);
+    System.out.println(this.rg);
+    System.out.println(this.cpf);
   }
 
 }

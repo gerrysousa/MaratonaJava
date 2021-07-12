@@ -36,6 +36,8 @@ public class Calculadora {
     System.out.println("Nao eh possivel dividir por 0");
   }
   public void alteraDoisNumeros(double num1, double num2) {
+    // quando é tipo primitivo, o metodo recebe uma copia do valor,
+    // quando é tipo reference, o metodo recebe a referencia do objeto na memoria
     num1 = 30;
     num2 = 40;
     System.out.println("Dentro do metodo");

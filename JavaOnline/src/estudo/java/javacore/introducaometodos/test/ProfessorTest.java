@@ -17,9 +17,7 @@ public class ProfessorTest {
     prof2.rg="456789";
     prof2.cpf="222.222.222-22";
 
-    //prof=prof2;
-
-    prof.imprimeProfessor(prof);
-    prof.imprimeProfessor(prof2);
+    prof.imprimeProfessor();
+    prof2.imprimeProfessor();
   }
 }
