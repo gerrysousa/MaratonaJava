@@ -12,5 +12,6 @@ public class EstudanteTest {
 
     estudante.print();
     estudante.recuperarMedia();
+    System.out.println("Aprovado? "+estudante.isAprovado());
   }
 }
