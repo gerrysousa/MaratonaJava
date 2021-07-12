@@ -45,4 +45,27 @@ public class Calculadora {
     System.out.println("num2: "+num2);
   }
 
+  public void somaArray(int[] numeros) {
+    int soma = 0;
+    for (int num : numeros){
+      soma += num;
+    }
+    System.out.println("A soma é: "+soma);
+  }
+
+  public void somaVarArgs(int... numeros) {
+    int soma = 0;
+    for (int num : numeros){
+      soma += num;
+    }
+    System.out.println("A soma é: "+soma);
+  }
+  public void somaVarArgsDoisOuMaisParams(String param1, int... numeros) {
+    int soma = 0;
+    for (int num : numeros){
+      soma += num;
+    }
+    System.out.println("Metodo que recebe mais parametros, o VarArgs deve vir por ultimo : "+param1);
+    System.out.println("A soma é: "+soma);
+  }
 }

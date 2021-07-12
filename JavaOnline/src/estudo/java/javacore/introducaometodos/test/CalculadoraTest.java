@@ -14,7 +14,13 @@ public class CalculadoraTest {
     int resultDiv2 = calc.divideDoisNumeros2(30,2);
     System.out.println(resultDiv2);
     calc.divideDoisNumeros3(30,0);
-
     System.out.println("Continuar exec");
+
+    int[] numeros = {1,2,3,4,5};
+    calc.somaArray(numeros);
+    calc.somaVarArgs(numeros);
+    calc.somaVarArgs(1,2,3,4,5);
+    calc.somaVarArgsDoisOuMaisParams("mais",1,2,3,4,5);
+
   }
 }
