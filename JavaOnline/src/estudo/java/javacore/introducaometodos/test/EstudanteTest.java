@@ -6,9 +6,9 @@ public class EstudanteTest {
 
   public static void main(String[] args) {
     Estudante estudante = new Estudante();
-    estudante.nome="joao";
-    estudante.idade=15;
-    estudante.notas = new double[]{6,7,9};
+    estudante.setNome("Joao");
+    estudante.setIdade(15);
+    estudante.setNotas(new double[]{6,7,9});
 
     estudante.print();
     estudante.recuperarMedia();

@@ -2,9 +2,9 @@ package estudo.java.javacore.introducaometodos.classes;
 
 public class Estudante {
 
-  public String nome;
-  public int idade;
-  public double[] notas;
+  private String nome;
+  private int idade;
+  private double[] notas;
 
 
   public void print() {
@@ -18,12 +18,12 @@ public class Estudante {
   }
 
   public void recuperarMedia() {
-    if (notas == null) {
+    if (this.notas == null) {
       System.out.println("Aluno não possui notas!");
       return;
     }
     double media = 0;
-    for (double nota : notas) {
+    for (double nota : this.notas) {
       media += nota;
     }
     media = media / notas.length;
@@ -33,6 +33,33 @@ public class Estudante {
     } else {
       System.out.println("\nA media foi: " + media + ", situacao: Reprovado.");
     }
+  }
 
+  public String getNome() {
+    return nome;
+  }
+
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
+
+  public int getIdade() {
+    return idade;
+  }
+
+  public void setIdade(int idade) {
+    if (idade<0){
+      System.out.println("Idade não pode ser menor que 0");
+      return;
+    }
+    this.idade = idade;
+  }
+
+  public double[] getNotas() {
+    return notas;
+  }
+
+  public void setNotas(double[] notas) {
+    this.notas = notas;
   }
 }
