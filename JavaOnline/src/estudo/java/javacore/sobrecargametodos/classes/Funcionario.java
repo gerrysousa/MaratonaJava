@@ -7,6 +7,15 @@ public class Funcionario {
   private double salario;
   private String rg;
 
+  public Funcionario(){}
+
+  public Funcionario(String nome, String cpf, double salario, String rg){
+    this.nome = nome;
+    this.cpf = cpf;
+    this.salario = salario;
+    this.rg = rg;
+  }
+
   public void init(String nome, String cpf, double salario) {
     this.nome = nome;
     this.cpf = cpf;
