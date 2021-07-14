@@ -3,7 +3,7 @@ package estudo.java.javacore._6modificadorestatico.classes;
 public class Carro {
   private String nome;
   private double velocidadeMax;
-  public static double velocidadeLimite = 240;
+  private static double velocidadeLimite = 240;
 
   public Carro(String nome, double velocidadeMax){
     this.nome=nome;
@@ -33,5 +33,13 @@ public class Carro {
 
   public void setVelocidadeMax(double velocidadeMax) {
     this.velocidadeMax = velocidadeMax;
+  }
+
+  public static double getVelocidadeLimite() {
+    return velocidadeLimite;
+  }
+
+  public static void setVelocidadeLimite(double velocidadeLimite) {
+    Carro.velocidadeLimite = velocidadeLimite;
   }
 }
