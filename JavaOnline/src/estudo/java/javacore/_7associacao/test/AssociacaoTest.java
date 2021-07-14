@@ -26,12 +26,10 @@ public class AssociacaoTest {
     seminarios[0] = semi1;
     prof1.setSeminarios(seminarios);
 
-
     semi1.print();
     aluno1.print();
     aluno2.print();
     prof1.print();
     local1.print();
-
   }
 }

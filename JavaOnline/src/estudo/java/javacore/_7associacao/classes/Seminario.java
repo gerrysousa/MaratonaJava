@@ -1,6 +1,7 @@
 package estudo.java.javacore._7associacao.classes;
 
 public class Seminario {
+
   private String titulo;
   private Aluno[] alunos;
   private Professor professor;
@@ -13,15 +14,28 @@ public class Seminario {
   public Seminario() {
   }
 
-  public void print(){
+  public void print() {
     System.out.println("----------------- Relatorio de Seminarios ---------------------------");
-    System.out.println("Titulo: "+this.titulo);
-    System.out.println("Professor: "+this.professor.getNome());
-    System.out.println("Local: "+this.local.getRua()+", "+this.local.getBairro());
-    System.out.println("--- Alunos Inscritos ---");
-    for (Aluno aluno : alunos){
-      System.out.println(aluno.getNome()+"; ");
+    System.out.println("Titulo: " + this.titulo);
+    if (this.professor != null) {
+      System.out.println("Professor: " + this.professor.getNome());
+    }else {
+      System.out.println("Nenhum professor cadastrado");
     }
+
+    if (this.local != null) {
+      System.out.println("Local: " + this.local.getRua() + ", " + this.local.getBairro());
+    } else {
+      System.out.println("Sem local cadastrado");
+    }
+    if (this.alunos != null && alunos.length != 0) {
+      System.out.println("--- Alunos Inscritos ---");
+      for (Aluno aluno : alunos) {
+        System.out.println(aluno.getNome() + "; ");
+      }
+      return;
+    }
+    System.out.println("Nenhum aluno cadastrado");
   }
 
   public Local getLocal() {
