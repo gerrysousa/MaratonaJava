@@ -1,9 +1,10 @@
 package estudo.java.javacore._8heranca.classes;
 
 public class Pessoa {
-  private String nome;
-  private String cpf;
-  private Endereco endereco;
+  //modificador de acesso protected, permite acesso somente dentro do mesmo pacote, ou das classes filhas
+  protected String nome;
+  protected String cpf;
+  protected Endereco endereco;
 
   public void print(){
     System.out.println("Nome: "+this.nome);
