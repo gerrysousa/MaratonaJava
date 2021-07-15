@@ -6,6 +6,14 @@ public class Pessoa {
   protected String cpf;
   protected Endereco endereco;
 
+  public Pessoa(String nome) {
+    this.nome = nome;
+  }
+  public Pessoa(String nome, String cpf) {
+    this(nome);
+    this.cpf = cpf;
+  }
+
   public void print(){
     System.out.println("Nome: "+this.nome);
     System.out.println("Cpf: "+this.cpf);
