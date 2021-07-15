@@ -3,8 +3,18 @@ package estudo.java.javacore._8heranca.classes;
 public class Funcionario  extends Pessoa{
  private double salario;
 
+  static {
+    System.out.println("Bloco de inicialização funcionario estatico");
+  }
+  {
+    System.out.println("Bloco de inicialização funcionario comum 1");
+  }
+  {
+    System.out.println("Bloco de inicialização funcionario comum 2");
+  }
   public Funcionario(String nome) {
     super(nome);
+    System.out.println("Construtor Funcionario");
   }
 
   public Funcionario(String nome, String cpf) {
