@@ -1,19 +1,28 @@
 package estudo.java.javacore._11enum.classes;
 
 public class Cliente {
-  private String nome;
-  private TipoCliente tipo;
+  public enum TipoPagamento {
+    AVISTA, APRAZO
+  }
 
-  public Cliente(String nome, TipoCliente tipo) {
+  private String nome;
+  private TipoCliente tipoCliente;
+  private TipoPagamento tipoPagamento;
+
+  public Cliente(String nome, TipoCliente tipoCliente, TipoPagamento tipoPagamento) {
     this.nome = nome;
-    this.tipo = tipo;
+    this.tipoCliente = tipoCliente;
+    this.tipoPagamento = tipoPagamento;
   }
 
   @Override
   public String toString() {
     return "Cliente{" +
         "nome='" + nome + '\'' +
-        ", tipo=" + tipo +
+        ", tipoCliente=" + tipoCliente +
+        ", tipoPagamento=" + tipoPagamento +
+        ", tipoClienteInteiro=" + tipoCliente.getTipoInt() +
+        ", tipoClienteNome=" + tipoCliente.getNome() +
         '}';
   }
 
@@ -25,11 +34,11 @@ public class Cliente {
     this.nome = nome;
   }
 
-  public TipoCliente getTipo() {
-    return tipo;
+  public TipoCliente getTipoCliente() {
+    return tipoCliente;
   }
 
-  public void setTipo(TipoCliente tipo) {
-    this.tipo = tipo;
+  public void setTipoCliente(TipoCliente tipoCliente) {
+    this.tipoCliente = tipoCliente;
   }
 }
