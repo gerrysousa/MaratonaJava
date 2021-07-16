@@ -13,4 +13,9 @@ public class Gerente extends Funcionario{
   public void calculaSalario(){
     this.salario = salario + (salario *0.2);
   }
+  @Override
+  public void metodoAbstrat02(){
+    System.out.println("A primeira classe descendente concreta é preciso implementar os metodos abstratos ainda não implementados ");
+  }
+
 }

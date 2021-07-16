@@ -16,6 +16,11 @@ public class Vendedor extends Funcionario{
     this.salario = salario + (totalVendas *0.05);
   }
 
+  @Override
+  public void metodoAbstrat02(){
+    System.out.println("A primeira classe descendente concreta é preciso implementar os metodos abstratos ainda não implementados ");
+  }
+
   public double getTotalVendas() {
     return totalVendas;
   }

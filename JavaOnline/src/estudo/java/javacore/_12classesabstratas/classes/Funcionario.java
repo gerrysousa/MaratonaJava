@@ -1,7 +1,7 @@
 package estudo.java.javacore._12classesabstratas.classes;
 
-public abstract class Funcionario {
- protected String nome;
+public abstract class Funcionario extends Pessoa {
+
  protected String clt;
  protected double salario;
 
@@ -15,6 +15,12 @@ public abstract class Funcionario {
   }
 
   public abstract void calculaSalario();
+
+  @Override
+  public void metodoAbstrat01(){
+    System.out.println("Como o metodo foi implementado aqui, não é preciso implementar na classes filhas");
+  }
+
 
   @Override
   public String toString() {
