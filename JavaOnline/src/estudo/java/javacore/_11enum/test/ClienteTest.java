@@ -12,5 +12,8 @@ public class ClienteTest {
 
     Cliente c2 = new Cliente("Tiao", TipoCliente.PESSOA_JURIDICA,TipoPagamento.AVISTA);
     System.out.println(c2);
+
+    System.out.println(TipoCliente.PESSOA_FISICA.getId());
+    System.out.println(TipoCliente.PESSOA_JURIDICA.getId());
   }
 }
