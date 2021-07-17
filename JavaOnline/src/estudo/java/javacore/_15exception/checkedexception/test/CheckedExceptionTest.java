@@ -39,4 +39,19 @@ public class CheckedExceptionTest {
     System.out.println("Arquivo criado? " + file.createNewFile());
   }
 
+  public static void abrirArquivo() {
+    try {
+      System.out.println("Abrindo um arquivo");
+      System.out.println("Executando leitura do arquivo");
+      System.out.println("Escrevendo no arquivo");
+      
+    } catch (Exception e) {
+      System.out.println("Dentro do catch");
+      e.printStackTrace();
+    } finally {
+      System.out.println("Fechar o arquivo");
+    }
+  }
+
+
 }
