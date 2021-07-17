@@ -1,4 +1,4 @@
-package estudo.java.javacore._15exception.test;
+package estudo.java.javacore._15exception.error.test;
 
 public class ErrorTest {
 
