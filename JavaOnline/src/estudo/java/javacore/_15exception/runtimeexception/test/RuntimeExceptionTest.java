@@ -23,5 +23,12 @@ public class RuntimeExceptionTest {
     int[] array = new int[2];
     System.out.println(array[1]);//System.out.println(array[1]); // << esse lança um ArrayIndexOutOfBoundsException (runtimeexception)
 
+    try{
+      System.out.println("Entrou no bloco try-catch");
+      System.out.println(array[2]);//System.out.println(array[1]); // << esse lança um ArrayIndexOutOfBoundsException (runtimeexception)
+    }catch (RuntimeException e){
+      e.printStackTrace();
+    }
+    System.out.println("Depois do bloco try-catch");
   }
 }
