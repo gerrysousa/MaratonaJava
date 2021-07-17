@@ -26,7 +26,7 @@ public class MultiplasRuntimeException {
     }
 
     System.out.println("Fim do programa");
-
+    System.out.println("-------------------------------------------");
     try {
       talvezLanceException();
     }catch (SQLException e){
@@ -34,9 +34,25 @@ public class MultiplasRuntimeException {
     }catch (FileNotFoundException e){
       System.out.println("Executa se a exception foi de arquivo");
     }
+    System.out.println("--------------Colocando as duas exceptions-----------------------------");
+    try {
+      talvezLanceExceptionJava7();
+    }catch (SQLException | FileNotFoundException e){
+      System.out.println("Executa para qualquer exception");
+    }
+    System.out.println("------------------ colocando uma exception generica apenas -------------------------");
+    try {
+      talvezLanceExceptionJava7();
+    }catch (Exception e){
+      System.out.println("Executa para qualquer exception");
+    }
 
   }
   private static void talvezLanceException() throws SQLException, FileNotFoundException{
     System.out.println("Dentro da classe talvezLanceException");
+  }
+
+  private static void talvezLanceExceptionJava7() throws SQLException, FileNotFoundException{
+    System.out.println("Dentro da classe talvezLanceExceptionJava7");
   }
 }
