@@ -6,10 +6,21 @@ import java.util.regex.Pattern;
 public class ExpressoesRegularesTest {
 
   public static void main(String[] args) {
+    /**
+     \d - todos dos digitos
+     \D - tudo que não for digitos
+     \s - espaços em branco \t \n \f \r
+     \S - caractere que não for branco
+     \w - caractere de palavras a-z, A-Z, digitos e _
+     \W - tudo que não for caractere de palavras
+
+     */
+
     String regex="aba";
-    String texto="ababadfsabafsaabas";
-    //O regex não reutiliza uma caractere que já foi encontrado pelo regex temos 4 aba no texto,
-    // mas o regex encontra 3,
+    //String regex="\\W";
+    String texto="#ababa135 & dfsabafs aabas ABCD1235 \r fd \n";
+    //O regex não reutiliza um caractere que já foi encontrado pelo regex,
+    // temos 4 aba no texto=ababadfsabafsaabas, mas o regex encontra 3,
 
     Pattern pattern = Pattern.compile(regex);
     Matcher matcher = pattern.matcher(texto);
