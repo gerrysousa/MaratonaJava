@@ -14,6 +14,14 @@ public class ExpressoesRegularesTest {
      \w - caractere de palavras a-z, A-Z, digitos e _
      \W - tudo que não for caractere de palavras
      [] - utilizado para procurar um range de caracteres
+     ? - zero ou uma ocorrencia
+     * - zero ou mais ocorrencia
+     + - uma ou mais ocorrencia
+     (n,n) - de n até n ocorrencia
+     () - serve para agrupar uma expressao
+     | - serve como 'ou' -> Ex. regex:  o(c|v)0  - se aparecer ovo ou oco ele var dar match
+     $ - sinalizar fim de linha
+
      */
 
     regex3();
@@ -43,8 +51,6 @@ public class ExpressoesRegularesTest {
     String regex="[abcABC]";//[a-cA-C]=[abcABC]
     //String regex="\\W";
     String texto="#ababa135 & dfsabafs aabas ABCD1235 \r fd \n";
-    //O regex não reutiliza um caractere que já foi encontrado pelo regex,
-    // temos 4 aba no texto=ababadfsabafsaabas, mas o regex encontra 3,
 
     Pattern pattern = Pattern.compile(regex);
     Matcher matcher = pattern.matcher(texto);
@@ -60,11 +66,9 @@ public class ExpressoesRegularesTest {
   public static void regex3(){
     //procurando numeros hexadecimais 0x100F
 
-    String regex="0[xX][0-9a-fA-F]";
+    String regex="0[xX]([0-9a-fA-F])+(\\s|$)";
 
-    String texto="asdf 0X 0x10 0XF fdsa 0X10f";
-    //O regex não reutiliza um caractere que já foi encontrado pelo regex,
-    // temos 4 aba no texto=ababadfsabafsaabas, mas o regex encontra 3,
+    String texto="asdf 0X 0x10 0XF 0x00wrong fdsa 0X10f";
 
     Pattern pattern = Pattern.compile(regex);
     Matcher matcher = pattern.matcher(texto);
