@@ -22,6 +22,7 @@ public class ExpressoesRegularesTest {
      | - serve como 'ou' -> Ex. regex:  o(c|v)0  - vai dar match com -> ovo ou oco
      $ - sinalizar fim de linha
      . - substitui qualquer caractere  Ex. regex: 1.3 - vai dar match com -> 123, 143, 1a3, 1#3, etc
+     ^ - caractere de negação. regex [abc] assim vc quer tudo que for ab ou c, regex [^abc] assim vc quer tudo que não for ab ou c
 
      Ex.:
      \d{2} - procura dois digitos seguidos
@@ -29,7 +30,7 @@ public class ExpressoesRegularesTest {
      \d{2,} - procura mais de dois digitos seguidos
      */
 
-    regex5();
+    regex6();
 
   }
 
@@ -114,6 +115,25 @@ public class ExpressoesRegularesTest {
     String regex="\\d{2}/\\d{2}/\\d{2,4}";; //ou regex="\\d\\d/\\d\\d/\\d\\d\\d\\d";
 
     String texto="05/07/2020  05/2/20 5/7/2019 06/08/2021 10/08/20";
+
+    Pattern pattern = Pattern.compile(regex);
+    Matcher matcher = pattern.matcher(texto);
+    System.out.println("Texto: "+texto);
+    System.out.println("Indice: 0123456789");
+    System.out.println("Expressoes: "+matcher.pattern());
+    System.out.println("Posiçoes encontradas");
+
+    while (matcher.find()){
+      System.out.println(matcher.start()+" "+matcher.group());
+    }
+  }
+
+  public static void regex6(){
+    //validando data
+
+    String regex="proj([^,])*";
+
+    String texto="proj1.bkp, proj.java, proj1.class, proj1final.java, proj2.bkp, proj3.bkp, diagrama, texto, foto";
 
     Pattern pattern = Pattern.compile(regex);
     Matcher matcher = pattern.matcher(texto);
