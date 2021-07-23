@@ -17,7 +17,11 @@ public class ResourceBundleTest {
      messages_pt.properties     // default do sistema linguagem
      messages.properties
 
-     se não encontrar a palavra lança uma exceção
+     se não encontrar a palavra lança uma exceção.
+
+     Criar bundle pelo IntelliJ
+     clicar com em src>>new>> ResourceBundle >> colocar o nome do arquivo ex.: "messages" e add as linguas ex.: pt_BR, en_US.
+     Ele vai criar dois arquivos messages_pt_BR.properties e messages_en_US.properties
      * */
 
 
