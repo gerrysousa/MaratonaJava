@@ -18,6 +18,14 @@ public class Celular {
    Transitivo: para x, y, z diferentes de null, se x.equals(y)== true, logo y.equals(x) == true e x.equals(z) == true, logo y.equals(z) também tem que ser true
    Constante: x.equals(y) deve sempre retornar o mesmo valor, para x diferente de null x.equals(null) tem que retornar false
    */
+  @Override
+  public String toString() {
+    return "Celular{" +
+        "nome='" + nome + '\'' +
+        ", IMEI='" + IMEI + '\'' +
+        '}';
+  }
+
   /***
    * hashCode()
    Se x.equals(y) == true y.hashCode() == x.hashCode();

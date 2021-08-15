@@ -42,7 +42,6 @@ public class ListTest {
     for (Integer numero : numeros){
       System.out.println(numero);
     }
-
     //ArrayList que aceita qualquer coisa
     List listdeQualquerCoisa = new ArrayList<>();
     listdeQualquerCoisa.add("String");
@@ -62,6 +61,15 @@ public class ListTest {
     for (String nome : nomes2){
       System.out.println(nome);
     }
-
+    System.out.println("Utilizando o size: ");
+    int size = nomes2.size();
+    for (int i = 0; i< size; i++){
+      System.out.println(nomes2.get(i));
+    }
+    System.out.println("Para apagar todos os valores do array, utize o nomes.clear() ");
+    nomes2.clear();
+    for (String nome : nomes2){
+      System.out.println(nome);
+    }
   }
 }
