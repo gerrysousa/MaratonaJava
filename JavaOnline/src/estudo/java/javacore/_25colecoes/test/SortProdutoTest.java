@@ -2,8 +2,17 @@ package estudo.java.javacore._25colecoes.test;
 
 import estudo.java.javacore._25colecoes.classes.Produto;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+
+class ProdutoNomeComparator implements Comparator<Produto>{
+  @Override
+  public int compare(Produto p1, Produto p2) {
+    return p1.getNome().compareTo(p2.getNome());
+  }
+}
 
 public class SortProdutoTest {
 
@@ -27,5 +36,24 @@ public class SortProdutoTest {
       System.out.println(produto);
     }
 
+    System.out.println("------------------------------");
+    Produto[] produtosArray = new Produto[4];
+    produtosArray[0]= p1;
+    produtosArray[1]= p2;
+    produtosArray[2]= p3;
+    produtosArray[3]= p4;
+
+    System.out.println(Arrays.toString(produtosArray));
+    Arrays.sort(produtosArray);
+    System.out.println("Ordenado pelo critério do metodo compareTo da Classe Produto");
+    for (Produto produto : produtosArray){
+      System.out.println(produto);
+    }
+
+    System.out.println("Ordenado pelo critério do metodo compare da Classe ProdutoNomeComparator");
+    Arrays.sort(produtosArray, new ProdutoNomeComparator());
+    for (Produto produto : produtosArray){
+      System.out.println(produto);
+    }
   }
 }
