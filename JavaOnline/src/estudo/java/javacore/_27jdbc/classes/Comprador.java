@@ -15,6 +15,12 @@ public class Comprador {
     this.nome = nome;
   }
 
+  public Comprador(Integer id, String cpf, String nome) {
+    this.id = id;
+    this.cpf = cpf;
+    this.nome = nome;
+  }
+
   public Integer getId() {
     return id;
   }
