@@ -3,6 +3,7 @@ package estudo.java.javacore._27jdbc.classes;
 import java.util.Objects;
 
 public class Comprador {
+
   private Integer id;
   private String cpf;
   private String nome;
@@ -19,6 +20,15 @@ public class Comprador {
     this.id = id;
     this.cpf = cpf;
     this.nome = nome;
+  }
+
+  @Override
+  public String toString() {
+    return "Comprador{" +
+        "id=" + id +
+        ", cpf='" + cpf + '\'' +
+        ", nome='" + nome + '\'' +
+        '}';
   }
 
   public Integer getId() {
