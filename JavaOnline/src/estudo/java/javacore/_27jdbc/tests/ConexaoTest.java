@@ -12,8 +12,10 @@ public class ConexaoTest {
 //    deletar();
 //    List<Comprador> compradorList = selecionarTudo();
 //    System.out.println(compradorList);
-    List<Comprador> compradorList2 = selecionarPorNome("galinha");
-    System.out.println(compradorList2);
+//    List<Comprador> compradorList2 = selecionarPorNome("galinha");
+//    System.out.println(compradorList2);
+    //CompradorDB.selectMetaData();
+    CompradorDB.checkDriverStatus();
   }
 
   public static void inserir() {

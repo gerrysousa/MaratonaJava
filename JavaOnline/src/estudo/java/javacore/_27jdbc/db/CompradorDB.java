@@ -3,7 +3,9 @@ package estudo.java.javacore._27jdbc.db;
 import estudo.java.javacore._27jdbc.classes.Comprador;
 import estudo.java.javacore._27jdbc.conn.ConexaoFactory;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -92,5 +94,62 @@ public class CompradorDB {
       e.printStackTrace();
     }
     return null;
+  }
+
+  public static void selectMetaData() {
+    String sql = "SELECT id, nome, cpf FROM `agencia`.`comprador`";
+    Connection conn = ConexaoFactory.getConexao();
+    List<Comprador> compradorList = new ArrayList<>();
+    try {
+      Statement stmt = conn.createStatement();
+      ResultSet rs = stmt.executeQuery(sql);
+      ResultSetMetaData rsmd = rs.getMetaData();
+      rs.next();
+
+      int qtdColunas = rsmd.getColumnCount();
+      System.out.println("Quantidade Colunas: " + qtdColunas);
+
+      for (int i = 1; i < qtdColunas; i++) {
+        System.out.println("Tabela: " + rsmd.getTableName(i));
+        System.out.println("Nome coluna: " + rsmd.getColumnName(i));
+        System.out.println("Tamanho coluna: " + rsmd.getColumnDisplaySize(i));
+      }
+
+      ConexaoFactory.close(conn, stmt, rs);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void checkDriverStatus() {
+    Connection conn = ConexaoFactory.getConexao();
+    try {
+      DatabaseMetaData dbmd = conn.getMetaData();
+      if (dbmd.supportsResultSetType(ResultSet.TYPE_FORWARD_ONLY)) {
+        System.out.println("Suporta TYPE_FORWARD_ONLY. ");
+        System.out.println("Leitura da tabela top-down, sempre para frente. ");
+        if (dbmd.supportsResultSetConcurrency(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE)) {
+          System.out.println("E também suporta CONCUR_UPDATABLE.");
+          System.out.println("CONCUR_UPDATABLE: suporta atualização do ResultSet enquando o registro está aberto. ");
+        }
+      }
+      if (dbmd.supportsResultSetType(ResultSet.TYPE_SCROLL_INSENSITIVE)) {
+        System.out.println("Suporta TYPE_SCROLL_INSENSITIVE. ");
+        System.out.println("Leitura da tabela em qualquer posição, Alterações feitas na base não vão modificar o ResultSet pq ele fica na memória");
+        if (dbmd.supportsResultSetConcurrency(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE)) {
+          System.out.println("E também suporta CONCUR_UPDATABLE");
+        }
+      }
+      if (dbmd.supportsResultSetType(ResultSet.TYPE_SCROLL_SENSITIVE)) {
+        System.out.println("Suporta TYPE_SCROLL_SENSITIVE. ");
+        System.out.println("Leitura da tabela em qualquer posição, Alterações feitas na base vão modificar o ResultSet. ");
+        if (dbmd.supportsResultSetConcurrency(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE)) {
+          System.out.println("E também suporta CONCUR_UPDATABLE.");
+        }
+      }
+      ConexaoFactory.close(conn);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 }
