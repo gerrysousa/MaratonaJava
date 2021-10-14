@@ -15,7 +15,8 @@ public class ConexaoTest {
 //    List<Comprador> compradorList2 = selecionarPorNome("galinha");
 //    System.out.println(compradorList2);
     //CompradorDB.selectMetaData();
-    CompradorDB.checkDriverStatus();
+    //CompradorDB.checkDriverStatus();
+    CompradorDB.testTypeScroll();
   }
 
   public static void inserir() {
