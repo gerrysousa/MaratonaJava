@@ -11,7 +11,7 @@ public class ConexaoFactory {
   //java.sql = Connection, Statement, ResultSet
   //DriverManager
   public static Connection getConexao() {
-    String url = "jdbc:mysql://localhost/agencia?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=UTC";
+    String url = "jdbc:mysql://localhost/agencia?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=UTC&noAccessToProcedureBodies=true";
     String user = "user";
     String password = "password";
     try {

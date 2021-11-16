@@ -2,6 +2,7 @@ package estudo.java.javacore._27jdbc.db;
 
 import estudo.java.javacore._27jdbc.classes.Comprador;
 import estudo.java.javacore._27jdbc.conn.ConexaoFactory;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
@@ -110,6 +111,25 @@ public class CompradorDB {
         compradorList.add(new Comprador(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf")));
       }
       ConexaoFactory.close(conn, stmt, rs);
+      return compradorList;
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+  public static List<Comprador> searchByNameCallableStatement(String nome) {
+    String sql = "call `agencia`.`SP_GetCompradoresPorNome`( ? )";
+    Connection conn = ConexaoFactory.getConexao();
+    List<Comprador> compradorList = new ArrayList<>();
+    try {
+      CallableStatement cs = conn.prepareCall(sql);
+      cs.setString(1,"%"+nome+"%");
+      ResultSet rs = cs.executeQuery();
+      while (rs.next()) {
+        compradorList.add(new Comprador(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf")));
+      }
+      ConexaoFactory.close(conn, cs, rs);
       return compradorList;
     } catch (SQLException e) {
       e.printStackTrace();

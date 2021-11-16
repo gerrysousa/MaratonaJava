@@ -17,11 +17,12 @@ public class ConexaoTest {
     //CompradorDB.selectMetaData();
     //CompradorDB.checkDriverStatus();
     //CompradorDB.testTypeScroll();
-    CompradorDB.updateNomesToLowerCase();
+   // CompradorDB.updateNomesToLowerCase();
     //CompradorDB.inserirRegistros();
     //CompradorDB.deletarRegistros();
 
-    CompradorDB.updatePreparedStatement(new Comprador(5,"555.555.555-00", "Cicrano updatePreparedStatement"));
+    //CompradorDB.updatePreparedStatement(new Comprador(5,"555.555.555-00", "Cicrano updatePreparedStatement"));
+    System.out.println(CompradorDB.searchByNameCallableStatement("bas"));
   }
 
   public static void inserir() {

@@ -10,3 +10,16 @@ Criar as seguintes tabelas:
 - Comprador (id, nome, cpf)
 -----------
 Add o arquivo "mysql-connector-java-8.0.25.jar" na pasta lib do projeto
+
+------
+Para criar a procedures no SQL executar o comando abaixo:
+
+```
+use agencia;
+DELIMITER //
+create procedure SP_GetCompradoresPorNome(termo varchar(100))
+begin
+select * from comprador where nome like termo;
+end //
+DELIMITER ;
+```
