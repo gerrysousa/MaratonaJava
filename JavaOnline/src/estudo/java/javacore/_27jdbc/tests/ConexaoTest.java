@@ -20,6 +20,8 @@ public class ConexaoTest {
     CompradorDB.updateNomesToLowerCase();
     //CompradorDB.inserirRegistros();
     //CompradorDB.deletarRegistros();
+
+    CompradorDB.updatePreparedStatement(new Comprador(5,"555.555.555-00", "Cicrano updatePreparedStatement"));
   }
 
   public static void inserir() {

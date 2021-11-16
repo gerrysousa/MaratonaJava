@@ -4,6 +4,7 @@ import estudo.java.javacore._27jdbc.classes.Comprador;
 import estudo.java.javacore._27jdbc.conn.ConexaoFactory;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -52,6 +53,25 @@ public class CompradorDB {
     try {
       Statement stmt = conn.createStatement();
       stmt.executeUpdate(sql);
+      System.out.println("Registro atualizado com sucesso!");
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void updatePreparedStatement(Comprador comprador) {
+    if (comprador == null || comprador.getId() == null) {
+      System.out.println("Não foi possivel atualizar o registro!");
+      return;
+    }
+    String sql = "UPDATE `agencia`.`comprador` SET `cpf`= ?, `nome`= ? WHERE `id`= ?";
+    Connection conn = ConexaoFactory.getConexao();
+    try {
+      PreparedStatement ps = conn.prepareStatement(sql);
+      ps.setString(1,comprador.getCpf());
+      ps.setString(2,comprador.getNome());
+      ps.setInt(3, comprador.getId());
+      ps.executeUpdate();
       System.out.println("Registro atualizado com sucesso!");
     } catch (SQLException e) {
       e.printStackTrace();
