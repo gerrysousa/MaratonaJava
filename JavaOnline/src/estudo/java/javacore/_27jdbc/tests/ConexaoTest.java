@@ -16,7 +16,10 @@ public class ConexaoTest {
 //    System.out.println(compradorList2);
     //CompradorDB.selectMetaData();
     //CompradorDB.checkDriverStatus();
-    CompradorDB.testTypeScroll();
+    //CompradorDB.testTypeScroll();
+    CompradorDB.updateNomesToLowerCase();
+    //CompradorDB.inserirRegistros();
+    //CompradorDB.deletarRegistros();
   }
 
   public static void inserir() {

@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CompradorDB {
 
@@ -177,6 +178,69 @@ public class CompradorDB {
       while (rs.previous()) {
         System.out.println(new Comprador(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf")));
       }
+      ConexaoFactory.close(conn, stmt, rs);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void updateNomesToLowerCase(){
+    String sql = "SELECT id, nome, cpf FROM `agencia`.`comprador`";
+    Connection conn = ConexaoFactory.getConexao();
+    try {
+      DatabaseMetaData dbmd = conn.getMetaData();
+      Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+      ResultSet rs = stmt.executeQuery(sql);
+
+      System.out.println(dbmd.updatesAreDetected(ResultSet.TYPE_SCROLL_INSENSITIVE));
+      System.out.println(dbmd.insertsAreDetected(ResultSet.TYPE_SCROLL_INSENSITIVE));
+      System.out.println(dbmd.deletesAreDetected(ResultSet.TYPE_SCROLL_INSENSITIVE));
+      while (rs.next()) {
+        rs.updateString("nome", rs.getString("nome").toLowerCase());//Atualiza no resultset
+        //Caso queira cancelar um update por causa de alguma restrição, deve-se chamar "rs.cancelRowUpdates()" antes do "rs.updateRow()"
+        rs.updateRow();//Atualiza no banco
+      }
+      ConexaoFactory.close(conn, stmt, rs);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void inserirRegistros(){
+    String sql = "SELECT id, nome, cpf FROM `agencia`.`comprador`";
+    Connection conn = ConexaoFactory.getConexao();
+    try {
+      Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+      ResultSet rs = stmt.executeQuery(sql);
+
+      String nome = "Cicrano Insert";
+      String cpf = "666.666.666-66";
+
+//      rs.absolute(2);// Posso ir direto para uma linha especifica com esse comando
+      rs.moveToInsertRow();
+      rs.updateString("nome", nome);
+      rs.updateString("cpf", cpf);
+      rs.insertRow();
+      rs.moveToCurrentRow();// se a linha rs.absolute(2) estivesse descomentada, o resultSet voltaria pra linha 2
+//      System.out.println("nome: "+rs.getString("nome")+" linha: "+rs.getRow());
+
+      ConexaoFactory.close(conn, stmt, rs);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void deletarRegistros(){
+    String sql = "SELECT id, nome, cpf FROM `agencia`.`comprador`";
+    Connection conn = ConexaoFactory.getConexao();
+    try {
+      Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+      ResultSet rs = stmt.executeQuery(sql);
+
+      rs.absolute(6);// Posso ir direto para uma linha especifica com esse comando
+//      System.out.println("nome: "+rs.getString("nome")+" linha: "+rs.getRow());
+      rs.deleteRow();
+
       ConexaoFactory.close(conn, stmt, rs);
     } catch (SQLException e) {
       e.printStackTrace();
