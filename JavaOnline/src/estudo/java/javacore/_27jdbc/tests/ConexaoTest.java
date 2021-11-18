@@ -22,7 +22,10 @@ public class ConexaoTest {
     //CompradorDB.deletarRegistros();
 
     //CompradorDB.updatePreparedStatement(new Comprador(5,"555.555.555-00", "Cicrano updatePreparedStatement"));
-    System.out.println(CompradorDB.searchByNameCallableStatement("bas"));
+    //System.out.println(CompradorDB.searchByNameCallableStatement("bas"));
+  // System.out.println(CompradorDB.searchByNameRowSet("bas"));
+    CompradorDB.updateRowSet(new Comprador(5,"555.555.555-11", "Cicrano updateRowSet"));
+
   }
 
   public static void inserir() {

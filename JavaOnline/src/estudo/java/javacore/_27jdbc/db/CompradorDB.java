@@ -1,6 +1,7 @@
 package estudo.java.javacore._27jdbc.db;
 
 import estudo.java.javacore._27jdbc.classes.Comprador;
+import estudo.java.javacore._27jdbc.classes.MyRowSetListener;
 import estudo.java.javacore._27jdbc.conn.ConexaoFactory;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -13,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import javax.sql.rowset.JdbcRowSet;
 
 public class CompradorDB {
 
@@ -69,10 +71,32 @@ public class CompradorDB {
     Connection conn = ConexaoFactory.getConexao();
     try {
       PreparedStatement ps = conn.prepareStatement(sql);
-      ps.setString(1,comprador.getCpf());
-      ps.setString(2,comprador.getNome());
+      ps.setString(1, comprador.getCpf());
+      ps.setString(2, comprador.getNome());
       ps.setInt(3, comprador.getId());
       ps.executeUpdate();
+      System.out.println("Registro atualizado com sucesso!");
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+  public static void updateRowSet(Comprador comprador) {
+    if (comprador == null || comprador.getId() == null) {
+      System.out.println("Não foi possivel atualizar o registro!");
+      return;
+    }
+    String sql = "SELECT id, nome, cpf FROM `agencia`.`comprador` WHERE `id` = ? ";
+    JdbcRowSet jrs = ConexaoFactory.getRowSetConexao();
+    jrs.addRowSetListener(new MyRowSetListener());
+    try {
+      jrs.setCommand(sql);
+      jrs.setInt(1,comprador.getId());
+      jrs.execute();
+      jrs.next();
+      jrs.updateString("nome", comprador.getNome());
+      jrs.updateString("cpf", comprador.getCpf());
+      jrs.updateRow();
+      ConexaoFactory.close(jrs);
       System.out.println("Registro atualizado com sucesso!");
     } catch (SQLException e) {
       e.printStackTrace();
@@ -124,12 +148,32 @@ public class CompradorDB {
     List<Comprador> compradorList = new ArrayList<>();
     try {
       CallableStatement cs = conn.prepareCall(sql);
-      cs.setString(1,"%"+nome+"%");
+      cs.setString(1, "%" + nome + "%");
       ResultSet rs = cs.executeQuery();
       while (rs.next()) {
         compradorList.add(new Comprador(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf")));
       }
       ConexaoFactory.close(conn, cs, rs);
+      return compradorList;
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+  public static List<Comprador> searchByNameRowSet(String nome) {
+    String sql = "SELECT id, nome, cpf FROM `agencia`.`comprador` WHERE nome LIKE ?";
+    JdbcRowSet jrs = ConexaoFactory.getRowSetConexao();
+    jrs.addRowSetListener(new MyRowSetListener());
+    List<Comprador> compradorList = new ArrayList<>();
+    try {
+      jrs.setCommand(sql);
+      jrs.setString(1, "%" + nome + "%");
+      jrs.execute();
+      while (jrs.next()) {
+        compradorList.add(new Comprador(jrs.getInt("id"), jrs.getString("nome"), jrs.getString("cpf")));
+      }
+      ConexaoFactory.close(jrs);
       return compradorList;
     } catch (SQLException e) {
       e.printStackTrace();
@@ -201,18 +245,18 @@ public class CompradorDB {
     try {
       Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
       ResultSet rs = stmt.executeQuery(sql);
-      if (rs.last()){
-        System.out.println("Ultima linha: "+new Comprador(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf")));
-        System.out.println("Numero ultima linha: "+rs.getRow());
+      if (rs.last()) {
+        System.out.println("Ultima linha: " + new Comprador(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf")));
+        System.out.println("Numero ultima linha: " + rs.getRow());
       }
-      System.out.println("retornou para a primeira linha: "+rs.first());
-      System.out.println("Primeira linha: "+rs.getRow());
+      System.out.println("retornou para a primeira linha: " + rs.first());
+      System.out.println("Primeira linha: " + rs.getRow());
       rs.absolute(4);
-      System.out.println("Linha 4: "+new Comprador(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf")));
+      System.out.println("Linha 4: " + new Comprador(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf")));
       rs.relative(-1);
-      System.out.println("Linha 3: "+new Comprador(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf")));
-      System.out.println("Estou na ultima linha: "+rs.isLast());
-      System.out.println("Estou na primeira linha: "+rs.isFirst());
+      System.out.println("Linha 3: " + new Comprador(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf")));
+      System.out.println("Estou na ultima linha: " + rs.isLast());
+      System.out.println("Estou na primeira linha: " + rs.isFirst());
       System.out.println("---------------Leitura de tras para frente---------------------");
       rs.afterLast();
       while (rs.previous()) {
@@ -224,7 +268,7 @@ public class CompradorDB {
     }
   }
 
-  public static void updateNomesToLowerCase(){
+  public static void updateNomesToLowerCase() {
     String sql = "SELECT id, nome, cpf FROM `agencia`.`comprador`";
     Connection conn = ConexaoFactory.getConexao();
     try {
@@ -246,7 +290,7 @@ public class CompradorDB {
     }
   }
 
-  public static void inserirRegistros(){
+  public static void inserirRegistros() {
     String sql = "SELECT id, nome, cpf FROM `agencia`.`comprador`";
     Connection conn = ConexaoFactory.getConexao();
     try {
@@ -270,7 +314,7 @@ public class CompradorDB {
     }
   }
 
-  public static void deletarRegistros(){
+  public static void deletarRegistros() {
     String sql = "SELECT id, nome, cpf FROM `agencia`.`comprador`";
     Connection conn = ConexaoFactory.getConexao();
     try {

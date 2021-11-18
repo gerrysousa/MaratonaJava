@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.sql.rowset.JdbcRowSet;
+import javax.sql.rowset.RowSetProvider;
 
 public class ConexaoFactory {
 
@@ -25,10 +27,36 @@ public class ConexaoFactory {
     return null;
   }
 
+  public static JdbcRowSet getRowSetConexao() {
+    String url = "jdbc:mysql://localhost/agencia?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=UTC&noAccessToProcedureBodies=true";
+    String user = "user";
+    String password = "password";
+    try {
+      JdbcRowSet jdbcRowSet = RowSetProvider.newFactory().createJdbcRowSet();
+      jdbcRowSet.setUrl(url);
+      jdbcRowSet.setUsername(user);
+      jdbcRowSet.setPassword(password);
+      return jdbcRowSet;
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
   public static void close(Connection connection) {
     try {
       if (connection != null) {
         connection.close();
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void close(JdbcRowSet jdbcRowSet) {
+    try {
+      if (jdbcRowSet != null) {
+        jdbcRowSet.close();
       }
     } catch (SQLException e) {
       e.printStackTrace();
