@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.JdbcRowSet;
 import javax.sql.rowset.RowSetProvider;
 
@@ -43,6 +44,22 @@ public class ConexaoFactory {
     return null;
   }
 
+  public static CachedRowSet getRowSetCachedConexao() {
+    String url = "jdbc:mysql://localhost/agencia?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=UTC&noAccessToProcedureBodies=true&relaxAutoCommit=true";
+    String user = "user";
+    String password = "password";
+    try {
+      CachedRowSet cachedRowSet = RowSetProvider.newFactory().createCachedRowSet();
+      cachedRowSet.setUrl(url);
+      cachedRowSet.setUsername(user);
+      cachedRowSet.setPassword(password);
+      return cachedRowSet;
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
   public static void close(Connection connection) {
     try {
       if (connection != null) {
@@ -57,6 +74,16 @@ public class ConexaoFactory {
     try {
       if (jdbcRowSet != null) {
         jdbcRowSet.close();
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void close(CachedRowSet cachedRowSet) {
+    try {
+      if (cachedRowSet != null) {
+        cachedRowSet.close();
       }
     } catch (SQLException e) {
       e.printStackTrace();

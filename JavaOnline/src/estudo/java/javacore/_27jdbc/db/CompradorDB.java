@@ -6,6 +6,7 @@ import estudo.java.javacore._27jdbc.conn.ConexaoFactory;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -14,6 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.JdbcRowSet;
 
 public class CompradorDB {
@@ -80,6 +82,7 @@ public class CompradorDB {
       e.printStackTrace();
     }
   }
+
   public static void updateRowSet(Comprador comprador) {
     if (comprador == null || comprador.getId() == null) {
       System.out.println("Não foi possivel atualizar o registro!");
@@ -103,6 +106,29 @@ public class CompradorDB {
     }
   }
 
+  public static void updateRowSetCached(Comprador comprador) {
+    if (comprador == null || comprador.getId() == null) {
+      System.out.println("Não foi possivel atualizar o registro!");
+      return;
+    }
+    //String sql = "SELECT id, nome, cpf FROM `agencia`.`comprador` WHERE `id` = ? ";// esse da zica
+    String sql = "SELECT id, nome, cpf FROM comprador WHERE id = ? ";
+    CachedRowSet crs = ConexaoFactory.getRowSetCachedConexao();
+    try {
+      crs.setCommand(sql);
+      crs.setInt(1,comprador.getId());
+      crs.execute();
+      crs.next();
+      crs.updateString("nome", comprador.getNome());
+      crs.updateString("cpf", comprador.getCpf());
+      crs.updateRow();
+      crs.acceptChanges();
+
+      System.out.println("Registro atualizado com sucesso!");
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
   public static List<Comprador> selectAll() {
     String sql = "SELECT id, nome, cpf FROM `agencia`.`comprador`";
     Connection conn = ConexaoFactory.getConexao();
