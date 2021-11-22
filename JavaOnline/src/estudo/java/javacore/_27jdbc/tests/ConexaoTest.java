@@ -25,7 +25,13 @@ public class ConexaoTest {
     //System.out.println(CompradorDB.searchByNameCallableStatement("bas"));
   // System.out.println(CompradorDB.searchByNameRowSet("bas"));
   //  CompradorDB.updateRowSet(new Comprador(5,"555.555.555-11", "Cicrano updateRowSet"));
-    CompradorDB.updateRowSetCached(new Comprador(5,"555.555.555-22", "Cicrano updateRowSetCached"));
+    //CompradorDB.updateRowSetCached(new Comprador(5,"555.555.555-22", "Cicrano updateRowSetCached"));
+
+    try {
+      CompradorDB.saveTransaction();
+    }catch (Exception e){
+
+    }
 
   }
 

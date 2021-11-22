@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Savepoint;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,32 @@ public class CompradorDB {
       System.out.println("Registro criado com sucesso!");
     } catch (SQLException e) {
       e.printStackTrace();
+    }
+  }
+
+  public static void saveTransaction() throws SQLException {
+    String sql1 = "INSERT INTO `agencia`.`comprador` (`cpf`, `nome`) VALUES ('Transact1', 'Test Transaction1');";
+    String sql2 = "INSERT INTO `agencia`.`comprador` (`cpf`, `nome`) VALUES ('Transact2', 'Test Transaction2');";
+    String sql3 = "INSERT INTO `agencia`.`comprador` (`cpf`, `nome`) VALUES ('Transact3', 'Test Transaction3');";
+
+    Connection conn = ConexaoFactory.getConexao();
+    Savepoint savepoint = null;
+    try {
+      conn.setAutoCommit(false);
+      Statement stmt = conn.createStatement();
+      stmt.executeUpdate(sql1);
+      savepoint = conn.setSavepoint("One");
+      stmt.executeUpdate(sql2);
+      if (true)
+        throw new SQLException();
+      stmt.executeUpdate(sql3);
+      conn.commit();
+      ConexaoFactory.close(conn, stmt);
+      System.out.println("Registro criado com sucesso!");
+    } catch (SQLException e) {
+      e.printStackTrace();
+      conn.rollback(savepoint);
+      conn.commit();
     }
   }
 
