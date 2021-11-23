@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,4 +93,22 @@ public class CompradorDAO {
     return null;
   }
 
+  public static Comprador searchById(Integer compradorId) {
+    String sql = "SELECT id, nome, cpf FROM `agencia`.`comprador` WHERE id = ?";
+    Comprador comprador = null;
+    try (Connection conn = ConexaoFactory.getConexao();
+        PreparedStatement ps = conn.prepareStatement(sql);
+    ) {
+      ps.setInt(1, compradorId);
+      ResultSet rs = ps.executeQuery();
+      if (rs.next()) {
+        comprador = new Comprador(rs.getInt("id"), rs.getString("nome"), rs.getString("cpf"));
+      }
+      ConexaoFactory.close(conn, ps, rs);
+      return comprador;
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
 }
