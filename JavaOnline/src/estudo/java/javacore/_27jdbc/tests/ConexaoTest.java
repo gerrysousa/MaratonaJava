@@ -1,7 +1,8 @@
 package estudo.java.javacore._27jdbc.tests;
 
 import estudo.java.javacore._27jdbc.classes.Comprador;
-import estudo.java.javacore._27jdbc.db.CompradorDB;
+import estudo.java.javacore._27jdbc.db.CompradorDAO;
+import estudo.java.javacore._27jdbc.db.CompradorDB_OLD;
 import java.util.List;
 
 public class ConexaoTest {
@@ -27,8 +28,13 @@ public class ConexaoTest {
   //  CompradorDB.updateRowSet(new Comprador(5,"555.555.555-11", "Cicrano updateRowSet"));
     //CompradorDB.updateRowSetCached(new Comprador(5,"555.555.555-22", "Cicrano updateRowSetCached"));
 
+//   List<Comprador> compradorList = CompradorDAO.selectAll();
+//    System.out.println(compradorList);
+
+    CompradorDAO.update(new Comprador(5,"444.444.444-11", "Fulano novo"));
+
     try {
-      CompradorDB.saveTransaction();
+      CompradorDB_OLD.saveTransaction();
     }catch (Exception e){
 
     }
@@ -37,25 +43,25 @@ public class ConexaoTest {
 
   public static void inserir() {
     Comprador comprador = new Comprador("333.111.111-22", "Bastião tests");
-    CompradorDB.save(comprador);
+    CompradorDB_OLD.save(comprador);
   }
 
   public static void atualizar() {
     Comprador comprador = new Comprador(2, "444.111.111-22", "Bastião das galinhas");
-    CompradorDB.update(comprador);
+    CompradorDB_OLD.update(comprador);
   }
 
   public static void deletar() {
     Comprador comprador = new Comprador();
     comprador.setId(3);
-    CompradorDB.delete(comprador);
+    CompradorDB_OLD.delete(comprador);
   }
 
   public static List<Comprador> selecionarTudo() {
-    return CompradorDB.selectAll();
+    return CompradorDB_OLD.selectAll();
   }
 
   public static List<Comprador> selecionarPorNome(String nome) {
-    return CompradorDB.searchByName(nome);
+    return CompradorDB_OLD.searchByName(nome);
   }
 }

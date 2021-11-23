@@ -19,7 +19,7 @@ import java.util.Locale;
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.JdbcRowSet;
 
-public class CompradorDB {
+public class CompradorDB_OLD {
 
   public static void save(Comprador comprador) {
     String sql = "INSERT INTO `agencia`.`comprador` (`cpf`, `nome`) VALUES ('" + comprador.getCpf() + "', '" + comprador.getNome() + "');";
@@ -156,6 +156,7 @@ public class CompradorDB {
       e.printStackTrace();
     }
   }
+
   public static List<Comprador> selectAll() {
     String sql = "SELECT id, nome, cpf FROM `agencia`.`comprador`";
     Connection conn = ConexaoFactory.getConexao();
