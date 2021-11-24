@@ -8,6 +8,8 @@ package estudo.java.javacore._28threads.test;
  Duas formas para implementar threads,
  - Extender classe Thread (Só é uma boa pratica se vc for especializa-la)
  - Implementando a interface Runnable (Melhor pratica)
+
+ Status da Thread: New, Runnable, Running, (Waiting, Blocking, Sleeping), Dead
  */
 
 class ThreadExemplo extends Thread {
