@@ -4,6 +4,9 @@ import estudo.java.javacore._28threads.classes.Conta;
 
 /***
  vc pode sincronizar um metodo(ex.: saque)  ou um bloco de codigo (ex.: saque2)
+
+ - metodos estáticos vão trabalhar com o LOCK da classe, metodos não estáticos vão trabalhar com o LOCK da instância
+
  */
 
 public class ContaTest implements Runnable {
