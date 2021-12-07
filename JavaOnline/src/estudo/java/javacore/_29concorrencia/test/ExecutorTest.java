@@ -34,8 +34,7 @@ public class ExecutorTest {
       - Executors.newCachedThreadPool(): vai criando a quantidade de threads necessarias, elas são finalizadas se ficarem 60s ociosas
       - Executors.newSingleThreadExecutor(): somente uma thread é criada, ele não pode aumentar a quantidade de threads como o newFixedThreadPool(3)
      */
-   // ExecutorService executorService = Executors.newFixedThreadPool(3);
-    ExecutorService executorService = Executors.newSingleThreadExecutor() ;
+    ExecutorService executorService = Executors.newFixedThreadPool(3);
 
     ThreadPoolExecutor threadPoolExecutor = (ThreadPoolExecutor) executorService;
     threadPoolExecutor.setMaximumPoolSize(10);
