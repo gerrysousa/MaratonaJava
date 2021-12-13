@@ -3,6 +3,7 @@ package estudo.java.javacore._27jdbc.db;
 import estudo.java.javacore._27jdbc.classes.Carro;
 import estudo.java.javacore._27jdbc.classes.Comprador;
 import estudo.java.javacore._27jdbc.conn.ConexaoFactory;
+import estudo.java.javacore._27jdbc.interfaces.CarroDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,9 +11,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarroDAO {
+public class CarroDAOImplNoSql implements CarroDAO {
 
-  public static void save(Carro carro) {
+  @Override
+  public void save(Carro carro) {
     String sql = "INSERT INTO `agencia`.`carro` (`placa`, `nome`, `comprador_id`) VALUES (? , ?, ?);";
     try (Connection conn = ConexaoFactory.getConexao();
         PreparedStatement ps = conn.prepareStatement(sql);) {
@@ -26,7 +28,8 @@ public class CarroDAO {
     }
   }
 
-  public static void delete(Carro carro) {
+  @Override
+  public void delete(Carro carro) {
     if (carro == null || carro.getId() == null) {
       System.out.println("Não foi possivel excluir o registro!");
       return;
@@ -42,7 +45,8 @@ public class CarroDAO {
     }
   }
 
-  public static void update(Carro carro) {
+  @Override
+  public void update(Carro carro) {
     if (carro == null || carro.getId() == null) {
       System.out.println("Não foi possivel atualizar o registro!");
       return;
@@ -60,7 +64,8 @@ public class CarroDAO {
     }
   }
 
-  public static List<Carro> selectAll() {
+  @Override
+  public List<Carro> selectAll() {
     String sql = "SELECT id, nome, placa, comprador_id FROM `agencia`.`carro`";
     List<Carro> carroList = new ArrayList<>();
     try (Connection conn = ConexaoFactory.getConexao();
@@ -77,7 +82,8 @@ public class CarroDAO {
     return null;
   }
 
-  public static List<Carro> searchByName(String nome) {
+  @Override
+  public List<Carro> searchByName(String nome) {
     String sql = "SELECT id, nome, placa, comprador_id FROM `agencia`.`carro` WHERE nome LIKE ?";
     List<Carro> carroList = new ArrayList<>();
     try (Connection conn = ConexaoFactory.getConexao();
