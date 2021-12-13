@@ -9,7 +9,7 @@ public class PessoaTest {
         .nomeDoMeio("Juscelino")
         .ultimoNome("Florentino")
         .apelido("tiao")
-        .criarPessoa();
+        .build();
 
     System.out.println(p);
   }
