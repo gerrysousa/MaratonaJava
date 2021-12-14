@@ -3,6 +3,7 @@ package estudo.java.javacore._32lambdas.test;
 import estudo.java.javacore._31comportamentoporparametro.classes.Carro;
 import estudo.java.javacore._31comportamentoporparametro.interfaces.CarroPredicate;
 import java.sql.SQLOutput;
+import java.util.function.Predicate;
 
 public class LambdaTest {
 
@@ -21,6 +22,12 @@ public class LambdaTest {
    (String s) -> s.length()
    () -> System.out.println("soma:"+a+b);
 
+   ------------
+   Isso é possivel por causa do target type: "Predicate<Carro> carroPredicate2" ou "CarroPredicate carroPredicate2"
+   CarroPredicate carroPredicate2 = (Carro carro) -> { return carro.getCor().equals("verde");}; // se usar o return deve-se colocar as chaves {}
+   ou
+   Predicate<Carro> carroPredicate2 = (Carro carro) -> { return carro.getCor().equals("verde");}; // se usar o return deve-se colocar as chaves {}
+
    */
 
   public static void main(String[] args) {
@@ -36,7 +43,6 @@ public class LambdaTest {
     CarroPredicate carroPredicate2 = (Carro carro) -> carro.getCor().equals("verde");
     System.out.println(carroPredicate2.test(new Carro("verde", 2015)));
     //-------------------- com lambda ---------------------------------
-    //CarroPredicate carroPredicate2 = (Carro carro) -> { return carro.getCor().equals("verde");}; // se usar o return deve-se colocar as chaves {}
 
     Runnable runnable = () -> System.out.println("Dentro do run");
     new Thread(runnable).start(); //ou apenas runnable.run();
