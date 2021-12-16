@@ -3,11 +3,13 @@ package estudo.java.javacore._34optional.test;
 import java.util.Optional;
 
 public class OptionalTest {
+
   String nome;
+
   public static void main(String[] args) {
     OptionalTest ot = new OptionalTest();
 
-    if (ot.nome!=null){
+    if (ot.nome != null) {
       System.out.println(ot.nome.toUpperCase());
     }
 
