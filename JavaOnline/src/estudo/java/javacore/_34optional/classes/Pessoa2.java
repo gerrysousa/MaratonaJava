@@ -6,7 +6,7 @@ public class Pessoa2 {
 
   private String nome;
   private Carro2 carro2;
-
+  private int idade;
 
   public Pessoa2(String nome) {
     this.nome = nome;
@@ -34,10 +34,19 @@ public class Pessoa2 {
     return "Pessoa2{" +
         "nome='" + nome + '\'' +
         ", carro2=" + carro2 +
+        ", idade=" + idade +
         '}';
   }
 
   public void setCarro2(Carro2 carro2) {
     this.carro2 = carro2;
+  }
+
+  public int getIdade() {
+    return idade;
+  }
+
+  public void setIdade(int idade) {
+    this.idade = idade;
   }
 }

@@ -4,7 +4,7 @@ public class Pessoa1 {
 
   private String nome;
   private Carro1 carro1;
-
+  private int idade;
 
   public Pessoa1(String nome) {
     this.nome = nome;
@@ -32,10 +32,19 @@ public class Pessoa1 {
     return "Pessoa1{" +
         "nome='" + nome + '\'' +
         ", carro1=" + carro1 +
+        ", idade=" + idade +
         '}';
   }
 
   public void setCarro1(Carro1 carro1) {
     this.carro1 = carro1;
+  }
+
+  public int getIdade() {
+    return idade;
+  }
+
+  public void setIdade(int idade) {
+    this.idade = idade;
   }
 }
