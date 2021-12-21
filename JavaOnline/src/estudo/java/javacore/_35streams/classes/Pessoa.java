@@ -4,6 +4,7 @@ package estudo.java.javacore._35streams.classes;
 import static java.util.Arrays.asList;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Pessoa {
 
@@ -61,7 +62,25 @@ public class Pessoa {
         new Pessoa("Deotrano", 40, 2300),
         new Pessoa("Xico", 29, 10000),
         new Pessoa("Tome", 27, 4400),
+        new Pessoa("Cabral", 21, 5000),
         new Pessoa("Cabral", 21, 5000)
     );
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Pessoa pessoa = (Pessoa) o;
+    return Objects.equals(nome, pessoa.nome);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(nome);
   }
 }

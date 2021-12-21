@@ -12,14 +12,28 @@ public class StremTest {
   /***
    - Pegar os tres primeiros nomes das pessoas com menos de 25 anos
    - Ordenados pelo nome
-
+   --------------------------------------------------------------
    Stream é em tempo real
    Collections estão guardados em algum lugar
+   --------------------------------------------------------------
+   No Stream a dois tipos de metodos (Intermediate  e Terminal)
+   Tipos intermediarios(Intermediate) retorna um outro STREAM, e permite vc encadear outros metodos
+   Exemplos intermediate: stream, filter, sorted, limit, map, distinct
+
+   Tipos finais(Terminal) retorna um valor que NÃO EH UM STREAM, por exemplo uma lista, retornar void, um valor numerico, ou uma String
+   Exemplos Terminal: collect, count, forEach
+
+   Os metodos intermediate não vão fazer nenhum processamento enquanto não tiver um metodo terminal invocando o metodo (encadiamento tipo lazy)
    */
   public static void main(String[] args) {
     List<Pessoa> pessoas = Pessoa.bancoDePessoas();
     System.out.println(get3PessoasOld(pessoas));
     System.out.println(get3PessoasStream(pessoas));
+
+    System.out.println("Pessoas com menos de 25 anos:" + contarPessoas(pessoas));
+    System.out.println("Pessoas com menos de 25 anos distintas:" + contarPessoasDistintas(pessoas));
+
+    pessoas.stream().forEach(System.out::println);
   }
 
   public static List<String> get3PessoasOld(List<Pessoa> pessoaList) {
@@ -44,5 +58,20 @@ public class StremTest {
         .map(Pessoa::getNome)
         .collect(Collectors.toList());
     return nomes;
+  }
+
+  public static long contarPessoas(List<Pessoa> pessoaList) {
+    return pessoaList.stream()
+        .filter(pessoa -> pessoa.getIdade() < 25)
+        .map(Pessoa::getNome)
+        .count();
+  }
+
+  public static long contarPessoasDistintas(List<Pessoa> pessoaList) {
+    return pessoaList.stream()
+        .filter(pessoa -> pessoa.getIdade() < 25)
+        .map(Pessoa::getNome)
+        .distinct()
+        .count();
   }
 }
