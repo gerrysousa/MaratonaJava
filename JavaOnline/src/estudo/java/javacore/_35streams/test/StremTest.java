@@ -55,6 +55,7 @@ public class StremTest {
         .filter(pessoa -> pessoa.getIdade() < 25)
         .sorted(Comparator.comparing(Pessoa::getNome))
         .limit(3)
+        .skip(1)
         .map(Pessoa::getNome)
         .collect(Collectors.toList());
     return nomes;
