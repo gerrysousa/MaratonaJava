@@ -11,11 +11,19 @@ public class Pessoa {
   private String nome;
   private int idade;
   private double salario;
+  private Genero genero;
 
   public Pessoa(String nome, int idade, double salario) {
     this.nome = nome;
     this.idade = idade;
     this.salario = salario;
+  }
+
+  public Pessoa(String nome, int idade, double salario, Genero genero) {
+    this.nome = nome;
+    this.idade = idade;
+    this.salario = salario;
+    this.genero = genero;
   }
 
   public String getNome() {
@@ -46,24 +54,22 @@ public class Pessoa {
   public String toString() {
     return "Pessoa{" +
         "nome='" + nome + '\'' +
-        ", idade=" + idade +
-        ", salario=" + salario +
         '}';
   }
 
   public static List<Pessoa> bancoDePessoas(){
     return asList(
-        new Pessoa("Bastiao", 22, 2000),
-        new Pessoa("Tiao", 19, 2500),
-        new Pessoa("Ze das couves", 26, 1900),
-        new Pessoa("Ze das galinas", 20, 1500),
-        new Pessoa("Fulano", 24, 7000),
-        new Pessoa("Cicrano", 35, 6000),
-        new Pessoa("Deotrano", 40, 2300),
-        new Pessoa("Xico", 29, 10000),
-        new Pessoa("Tome", 27, 4400),
-        new Pessoa("Cabral", 21, 5000),
-        new Pessoa("Cabral", 21, 5000)
+        new Pessoa("Bastiao", 22, 2000, Genero.MASCULINO),
+        new Pessoa("Tiao", 16, 2500, Genero.MASCULINO),
+        new Pessoa("Ze das couves", 26, 1900, Genero.MASCULINO),
+        new Pessoa("Ze das galinas", 20, 1500, Genero.MASCULINO),
+        new Pessoa("Clementina", 24, 7000, Genero.FEMININO),
+        new Pessoa("Eurica", 35, 6000, Genero.FEMININO),
+        new Pessoa("Tiana", 40, 2300, Genero.FEMININO),
+        new Pessoa("Xico", 29, 10000, Genero.MASCULINO),
+        new Pessoa("Tome", 27, 4400, Genero.MASCULINO),
+        new Pessoa("Cabralia", 17, 5000, Genero.FEMININO),
+        new Pessoa("Cabralia", 21, 5000, Genero.FEMININO)
     );
   }
 
@@ -77,6 +83,14 @@ public class Pessoa {
     }
     Pessoa pessoa = (Pessoa) o;
     return Objects.equals(nome, pessoa.nome);
+  }
+
+  public Genero getGenero() {
+    return genero;
+  }
+
+  public void setGenero(Genero genero) {
+    this.genero = genero;
   }
 
   @Override
