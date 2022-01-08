@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class StremTest {
+public class StreamTest1 {
 
   /***
    - Pegar os tres primeiros nomes das pessoas com menos de 25 anos
