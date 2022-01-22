@@ -26,34 +26,6 @@ import java.util.stream.Collectors;
 
 public class StreamTest6Collectors2 {
 
-  /***
-   Coisas que vc deve fazer ou levar em consideração quando for optar por streams paralelos
-   - Benchmark
-   - Unboxing e boxing (de valores)
-   - Algumas operações são piores paralelas do que sequenciais
-   --> (limit, findFirst) são ruins
-   --> findAny(), unordered() (Esses podem ser bons com paralelismo)
-   - Considerar custo total da computação. Fatores N (numero de elementos) , P (custo de processamento)
-   - Quantidade de dados (Se for pouco dados, não compensa ser paralelo)
-   - Tipos de coleções (Excelentes: ArrayList,IntStream.range),(Ruins: LinkedLis, Stream.iterate), (Bom: HashSet, TreeSet)
-   - Tamanho do Stream (tamanho definido)
-   - Processamento do merge
-
-   ----------------------------------
-   Codigos de Paralelismo
-   Processamentos paralelos funcionam com o fork-join
-
-   if(tarefa for pequena ou não pode ser dividida){
-    faz ela sequencial
-   }
-   else{
-    dividir em duas tarefas (Fork)
-    chamar metodo recusivamente
-    esperar todas as tarefas serem completadas
-    combinar todos os resultados (Join)
-   }
-   */
-
   //Agrupamento de elementos
   public static void main(String[] args) {
     List<Pessoa> pessoas = Pessoa.bancoDePessoas();
