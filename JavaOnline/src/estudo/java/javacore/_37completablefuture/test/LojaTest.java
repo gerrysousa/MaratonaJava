@@ -13,8 +13,6 @@ public class LojaTest {
     Loja submarino = new Loja();
     Loja fastShop = new Loja();
     Loja Magalu = new Loja();
-    Loja lojaAsyncException1 = new Loja();
-    Loja lojaAsyncException2 = new Loja();
 
     long start = System.currentTimeMillis();
     System.out.println("Preço americanas: " + americanas.getPreco());
@@ -41,13 +39,18 @@ public class LojaTest {
     System.out.println("Tempo total getPreco assincrono: " + (System.currentTimeMillis() - start2) + " ms");
 
     System.out.println("================================");
+    Loja lojaAsyncException1 = new Loja();
+    Loja lojaAsyncException2 = new Loja();
+    Loja lojaAsyncException3 = new Loja();
 
     Future<Double> precoAsyncExce1 = lojaAsyncException1.getPrecoAsyncException();
     Future<Double> precoAsyncExce2 = lojaAsyncException2.getPrecoAsyncException();
+    Future<Double> precoAsyncExce3 = lojaAsyncException2.getPrecoAsyncExceptionTunado();
 
     try {
       System.out.println("Preço exception1 tradando com Timeout por parametro no metodo get: " + precoAsyncExce1.get(3, TimeUnit.SECONDS));
       System.out.println("Preço exception2: " + precoAsyncExce2.get());
+      System.out.println("Preço exception3: " + precoAsyncExce3.get());
     } catch (InterruptedException | TimeoutException | ExecutionException e) {
       e.printStackTrace();
     }

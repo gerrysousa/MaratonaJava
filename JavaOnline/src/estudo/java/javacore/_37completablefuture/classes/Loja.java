@@ -6,7 +6,13 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 public class Loja {
+  private String nome;
 
+  public Loja(String nome) {
+    this.nome = nome;
+  }
+  public Loja() {
+  }
   public double getPreco() {
     return calcularPreco();
   }
@@ -49,5 +55,17 @@ public class Loja {
     delay();
     System.out.println(1 / 0);
     return ThreadLocalRandom.current().nextDouble() * 100;
+  }
+
+  public Future<Double> getPrecoAsyncExceptionTunado() {
+    return CompletableFuture.supplyAsync(this::calcularPrecoException);
+  }
+
+  public String getNome() {
+    return nome;
+  }
+
+  public void setNome(String nome) {
+    this.nome = nome;
   }
 }
