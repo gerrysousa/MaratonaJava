@@ -33,4 +33,21 @@ public class Loja {
 
   }
 
+  public Future<Double> getPrecoAsyncException() {
+    CompletableFuture<Double> precoFuturo = new CompletableFuture<>();
+    new Thread(() -> {
+      try {
+        precoFuturo.complete(calcularPrecoException());
+      } catch (Exception e) {
+        precoFuturo.completeExceptionally(e);
+      }
+    }).start();
+    return precoFuturo;
+  }
+
+  public double calcularPrecoException() {
+    delay();
+    System.out.println(1 / 0);
+    return ThreadLocalRandom.current().nextDouble() * 100;
+  }
 }
