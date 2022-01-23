@@ -18,7 +18,11 @@ public class Desconto {
   }
 
   public static String calcularDesconto(Orcamento orcamento) {
-    return String.format("%s o preço eh: %.2f", orcamento.getNomeDaLoja(), calculo(orcamento.getPreço(), orcamento.getCodigoDesconto()));
+    return String.format("Na %s o preço original eh: %.2f, desconto: %d, preco final: %.2f",
+        orcamento.getNomeDaLoja(),
+        orcamento.getPreço(),
+        orcamento.getCodigoDesconto().getPorcentagem(),
+        calculo(orcamento.getPreço(), orcamento.getCodigoDesconto()));
   }
 
   private static double calculo(double preco, Codigo codigo) {
