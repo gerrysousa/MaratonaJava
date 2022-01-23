@@ -1,5 +1,6 @@
 package estudo.java.javacore._37completablefuture.classes;
 
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 public class Desconto {
@@ -32,11 +33,11 @@ public class Desconto {
 
   public static void delay() {
     try {
-      TimeUnit.SECONDS.sleep(1);
+      int delay = ThreadLocalRandom.current().nextInt(500, 2000);
+      TimeUnit.MILLISECONDS.sleep(delay);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-
   }
 
 }

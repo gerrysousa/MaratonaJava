@@ -9,10 +9,18 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class NovaLojaTest {
 
   public static void main(String[] args) {
+    /***
+     CompletableFuture.allOf = espera todos os completablesFuture serem respondidos
+     CompletableFuture.anyOf = espera pelo primeiro completablesFuture ser respondido e ignora os outros
+     Exemplo bom para o anyOf é obter a cotação do dolar, vc pode mandar a requisicao para varias lojas, a primeira que responder já ignora o resto.
+     *
+     */
+
     List<NovaLoja> lojas = NovaLoja.lojas();
     //lojas.stream().forEach(novaLoja -> System.out.println(novaLoja.getPreco()));
     //acharPrecos(lojas);
@@ -24,7 +32,13 @@ public class NovaLojaTest {
           return t;
         });
 
-    acharPrecosAsync(lojas, executor);
+    // acharPrecosAsync(lojas, executor);
+    long start = System.currentTimeMillis();
+    CompletableFuture[] completableFutures = acharPrecosStream(lojas, executor)
+        .map(f -> f.thenAccept(s -> System.out.println(s + "( finalizado em: " + (System.currentTimeMillis() - start) + ")")))
+        .toArray(CompletableFuture[]::new);
+    CompletableFuture.allOf(completableFutures).join();
+    System.out.println("Tempo total: " + (System.currentTimeMillis() - start) + " ms");
   }
 
   public static List<String> acharPrecos(List<NovaLoja> lojas) {
@@ -61,5 +75,18 @@ public class NovaLojaTest {
     System.out.println("Tempo total: " + (System.currentTimeMillis() - start) + " ms");
     System.out.println(collect);
     return collect;
+  }
+
+  public static Stream<CompletableFuture<String>> acharPrecosStream(List<NovaLoja> lojas, Executor executor) {
+    System.out.println("Completable future Async STREAM com executor especial");
+    long start = System.currentTimeMillis();
+
+    Stream<CompletableFuture<String>> completableFutureStream = lojas.stream()
+        .map(loja -> CompletableFuture.supplyAsync(loja::getPreco, executor))
+        .map(future -> future.thenApply(Orcamento::parse))
+        .map(future -> future.thenCompose(orcamento -> CompletableFuture.supplyAsync(() -> Desconto.calcularDesconto(orcamento), executor)));
+
+    System.out.println("Tempo total: " + (System.currentTimeMillis() - start) + " ms");
+    return completableFutureStream;
   }
 }
